@@ -41,3 +41,19 @@ lyrics_text = tk.Text(root, wrap=tk.WORD, width=60, height=20)
 lyrics_text.pack()
 
 root.mainloop()
+
+
+
+
+import requests
+from bs4 import BeautifulSoup
+
+def scrape_lyrics(song_title, artist_name):
+    query = f"{song_title} {artist_name} lyrics".replace(" ", "+")
+    url = f"https://genius.com/search?q={query}"
+    
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+    
+    # Parse the webpage and extract the lyrics
+    # (You can modify the following logic based on the website structure)
